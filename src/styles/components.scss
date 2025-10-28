@@ -1,0 +1,92 @@
+@import './variables';
+@import './mixins';
+
+// Card component
+.card {
+  @include card;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  &-primary {
+    background: $primary-gradient;
+    color: white;
+  }
+  
+  &-secondary {
+    background: $secondary-color;
+    color: white;
+  }
+  
+  .card-icon {
+    font-size: 2rem;
+    margin-bottom: $spacing-sm;
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+    margin-bottom: $spacing-xs;
+  }
+  
+  .card-description {
+    color: $text-secondary;
+    font-size: 0.9rem;
+  }
+}
+
+// Button component
+.btn {
+  @include button;
+  
+  &-primary {
+    background: $primary-color;
+    color: white;
+    
+    &:hover {
+      background: darken($primary-color, 10%);
+    }
+  }
+  
+  &-secondary {
+    background: $secondary-color;
+    color: white;
+    
+    &:hover {
+      background: darken($secondary-color, 10%);
+    }
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// Section title
+.section-title {
+  text-align: center;
+  margin-bottom: $spacing-xl;
+  
+  h2 {
+    font-size: 2rem;
+    margin-bottom: $spacing-sm;
+  }
+  
+  p {
+    color: $text-secondary;
+  }
+}
+
+// Container
+.container {
+  @include container;
+  padding-top: $spacing-xl;
+  padding-bottom: $spacing-xl;
+  
+  h1 {
+    margin-bottom: $spacing-lg;
+  }
+}
+

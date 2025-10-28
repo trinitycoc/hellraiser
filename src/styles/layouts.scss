@@ -1,0 +1,118 @@
+@import './variables';
+@import './mixins';
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-image: url('/trinity-bg.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  position: relative;
+  
+  // Add dark overlay for better content readability
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+.header {
+  background: rgba(0, 0, 0, 0.5);
+  padding: $spacing-md 0;
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  
+  .nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 $spacing-md;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    text-decoration: none;
+    color: $text-dark-primary;
+    
+    .logo-image {
+      width: 50px;
+      height: 50px;
+    }
+    
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+  }
+  
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: $spacing-lg;
+    
+    li a {
+      color: $text-dark-primary;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+  
+  @include mobile {
+    .nav {
+      flex-direction: column;
+      gap: $spacing-sm;
+    }
+    
+    .nav-links {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: $spacing-sm;
+    }
+  }
+}
+
+.main {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.footer {
+  background: rgba(0, 0, 0, 0.5);
+  color: $text-dark-primary;
+  text-align: center;
+  padding: $spacing-md;
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  
+  a {
+    color: $primary-color;
+    text-decoration: none;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+

@@ -1,0 +1,787 @@
+@import '../variables';
+@import '../mixins';
+
+// Account Details Page
+.account-header-details {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+  border-radius: 12px;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-xl;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: $spacing-lg;
+  flex-wrap: wrap;
+}
+
+.account-name-section {
+  flex: 1;
+  min-width: 200px;
+  
+  .account-name {
+    font-size: 2.5rem;
+    margin-bottom: $spacing-xs;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    font-weight: 700;
+  }
+  
+  .account-tag {
+    font-size: 1.2rem;
+    color: #94a3b8;
+    font-weight: 500;
+    font-family: monospace;
+  }
+}
+
+.account-stats-header {
+  display: flex;
+  gap: $spacing-lg;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-md;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  min-width: 180px;
+  
+  .th-icon {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+  }
+  
+  .stat-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    
+    .stat-label {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .stat-value {
+      font-size: 1.5rem;
+      color: #ffffff;
+      font-weight: 700;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    }
+  }
+}
+
+// Account Grid Layout - Three Cards Only
+.account-grid-three {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: $spacing-lg;
+  margin-bottom: $spacing-xl;
+}
+
+// Single Column Layout for Remaining Content
+.single-column-layout {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+}
+
+// Info Grid for nested data
+.info-grid {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-sm;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.info-label {
+  font-weight: 500;
+  color: $text-secondary;
+  font-size: 0.95rem;
+}
+
+.info-value {
+  font-weight: 600;
+  color: $text-primary;
+  font-size: 1.1rem;
+}
+
+// Heroes List
+.heroes-list,
+.troops-list,
+.spells-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: $spacing-sm;
+}
+
+.equipment-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: $spacing-sm;
+}
+
+// Hero Equipment List with Icons
+.equipment-list-with-icons {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: $spacing-md;
+}
+
+.equipment-item-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: $spacing-md;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  &.max-level {
+    background: rgba(76, 175, 80, 0.1);
+    border-color: rgba(76, 175, 80, 0.3);
+  }
+}
+
+.equipment-icon-card {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  margin-bottom: $spacing-sm;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.equipment-info-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+  
+  .equipment-name {
+    font-size: 0.9rem;
+    color: $text-primary;
+    font-weight: 600;
+    text-align: center;
+    word-wrap: break-word;
+  }
+  
+  .equipment-level {
+    font-size: 0.85rem;
+    color: $text-secondary;
+    text-align: center;
+  }
+}
+
+// Achievements List
+.achievements-list {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.achievement-item {
+  padding: $spacing-md;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border-left: 3px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  &.complete {
+    border-left-color: #4caf50;
+    background: rgba(76, 175, 80, 0.05);
+  }
+  
+  &.partial {
+    border-left-color: #ffc107;
+  }
+}
+
+.achievement-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: $spacing-md;
+  margin-bottom: $spacing-sm;
+}
+
+.achievement-info {
+  flex: 1;
+}
+
+.achievement-name {
+  margin: 0 0 $spacing-xs 0;
+  color: $text-primary;
+  font-size: 1rem;
+}
+
+.achievement-description {
+  margin: 0;
+  color: $text-secondary;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.achievement-stars {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.star {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.3);
+  
+  &.filled {
+    color: #ffc107;
+  }
+}
+
+.achievement-progress {
+  margin-top: $spacing-sm;
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: $spacing-xs;
+}
+
+.progress-bar {
+  height: 100%;
+  background: $primary-gradient;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  font-size: 0.85rem;
+  color: $text-secondary;
+}
+
+.achievement-completion {
+  margin: $spacing-xs 0 0 0;
+  padding: $spacing-sm;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: $text-secondary;
+  font-style: italic;
+}
+
+.hero-item,
+.troop-item {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+  padding: $spacing-sm;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  text-align: left;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+  }
+  
+  &.max-level {
+    background: rgba(76, 175, 80, 0.1);
+    border: 1px solid rgba(76, 175, 80, 0.3);
+  }
+  
+  &.super-troop {
+    background: rgba(255, 193, 7, 0.1);
+    border: 1px solid rgba(255, 193, 7, 0.3);
+  }
+  
+  &.max-level.super-troop {
+    background: rgba(156, 39, 176, 0.1);
+    border: 1px solid rgba(156, 39, 176, 0.3);
+  }
+}
+
+.hero-name,
+.troop-name {
+  font-weight: 600;
+  color: $text-primary;
+  font-size: 0.95rem;
+}
+
+.hero-level,
+.troop-level {
+  font-size: 0.85rem;
+  color: $text-secondary;
+}
+
+// Badges
+.active-badge,
+.max-badge {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  margin-left: 4px;
+}
+
+.active-badge {
+  background: #4caf50;
+  color: white;
+}
+
+.max-badge {
+  background: #66bb6a;
+  color: white;
+}
+
+.super-badge {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  margin-left: 4px;
+  background: #ffc107;
+  color: #000;
+}
+
+// Hero and Troop Headers
+.hero-header,
+.troop-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: $spacing-xs;
+}
+
+.hero-village,
+.troop-details {
+  font-size: 0.85rem;
+  color: $text-secondary;
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+  
+  > span {
+    padding: 2px 6px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+  }
+}
+
+.hero-equipment {
+  margin-top: $spacing-xs;
+  padding-top: $spacing-xs;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.85rem;
+  
+  strong {
+    display: block;
+    margin-bottom: $spacing-sm;
+    color: $text-primary;
+    font-size: 0.9rem;
+  }
+  
+  .equipment-grid {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+  }
+  
+  .equipment-item-with-icon {
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+    padding: $spacing-xs;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    transition: background 0.3s ease;
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+  
+  .equipment-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    padding: 4px;
+  }
+  
+  .equipment-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    
+    .equipment-name {
+      font-size: 0.85rem;
+      color: $text-primary;
+      font-weight: 600;
+    }
+    
+    .equipment-level {
+      font-size: 0.75rem;
+      color: $text-secondary;
+    }
+  }
+}
+
+.equipment-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-sm;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  &.max-level {
+    background: rgba(76, 175, 80, 0.1);
+    border: 1px solid rgba(76, 175, 80, 0.3);
+  }
+}
+
+// More items indicator
+.more-items {
+  text-align: center;
+  color: $text-secondary;
+  font-style: italic;
+  margin-top: $spacing-sm;
+}
+
+// Capitalize utility
+.capitalize {
+  text-transform: capitalize;
+}
+
+// Loading and Error States
+.loading-container,
+.error-container {
+  text-align: center;
+  padding: $spacing-xl;
+  
+  h2 {
+    margin-bottom: $spacing-md;
+  }
+  
+  p {
+    color: $text-secondary;
+  }
+}
+
+.error-container {
+  color: #ff4444;
+}
+
+// League Container
+.league-container {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.league-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.league-info {
+  flex: 1;
+  
+  .league-name {
+    margin: 0 0 $spacing-xs 0;
+    color: $text-primary;
+    font-size: 1.3rem;
+  }
+  
+  .league-id {
+    margin: 0;
+    color: $text-secondary;
+    font-size: 0.9rem;
+  }
+}
+
+// Clan Header with Badge
+.clan-header {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-md;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  margin-bottom: $spacing-md;
+}
+
+.clan-badge {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.clan-info {
+  flex: 1;
+  
+  h3 {
+    margin: 0 0 $spacing-xs 0;
+    color: $text-primary;
+    font-size: 1.3rem;
+  }
+  
+  .clan-tag {
+    margin: 0;
+    color: $text-secondary;
+    font-size: 0.95rem;
+  }
+}
+
+// Clan Header Details
+.clan-header-details {
+  background: linear-gradient(135deg, rgba(118, 75, 162, 0.2) 0%, rgba(102, 126, 234, 0.2) 100%);
+  border-radius: 12px;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-xl;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  gap: $spacing-lg;
+  flex-wrap: wrap;
+}
+
+.clan-badge-container {
+  flex-shrink: 0;
+}
+
+.clan-badge-large {
+  width: 100px;
+  height: 100px;
+  border-radius: 12px;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 12px;
+}
+
+.clan-info-details {
+  flex: 1;
+  min-width: 200px;
+  
+  .clan-name {
+    font-size: 2rem;
+    margin-bottom: $spacing-xs;
+    color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    font-weight: 700;
+  }
+  
+  .clan-tag {
+    font-size: 1.1rem;
+    color: #94a3b8;
+    font-weight: 500;
+    font-family: monospace;
+  }
+}
+
+.clan-extra-info {
+  display: flex;
+  gap: $spacing-md;
+  flex-wrap: wrap;
+}
+
+.clan-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: $spacing-sm;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  min-width: 100px;
+  
+  .clan-stat-label {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .clan-stat-value {
+    font-size: 1.2rem;
+    color: #ffffff;
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+}
+
+// Section Headers and Content
+.section-header {
+  margin: $spacing-lg 0 $spacing-md 0;
+  
+  h3 {
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    margin: 0;
+  }
+}
+
+.section-content {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  padding: $spacing-md;
+  margin-bottom: $spacing-lg;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+// Toggle Buttons Row
+.toggle-buttons-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-md;
+  margin: $spacing-lg 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.toggle-button {
+  flex: 0 0 auto;
+  min-width: 180px;
+  padding: $spacing-md;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.3) 0%, rgba(118, 75, 162, 0.3) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: $spacing-md;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  
+  &:hover {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.4) 0%, rgba(118, 75, 162, 0.4) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .account-header-details {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .account-name-section .account-name {
+    font-size: 2rem;
+  }
+  
+  .account-stats-header {
+    flex-direction: column;
+  }
+  
+  .stat-item {
+    width: 100%;
+  }
+  
+  .clan-header-details {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .clan-badge-large {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .clan-info-details .clan-name {
+    font-size: 1.5rem;
+  }
+  
+  .clan-extra-info {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .clan-stat {
+    width: 100%;
+  }
+  
+  .account-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .heroes-list,
+  .troops-list {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+  
+  .clan-badge {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .clan-info h3 {
+    font-size: 1.1rem;
+  }
+}
+
