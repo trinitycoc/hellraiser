@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { DEFAULT_PLAYER_TAG } from '../config/constants'
 import { fetchAccountDetails } from '../services/api'
+import { useUserContext } from '../contexts/UserContext'
+import BackButton from '../components/BackButton'
 import Card from '../components/Card'
 
 function AccountDetails() {
@@ -15,6 +17,7 @@ function AccountDetails() {
   const [account, setAccount] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const { getCurrentUser } = useUserContext()
 
   // State for toggling sections - only one can be open at a time
   const [activeSection, setActiveSection] = useState(null)
@@ -24,7 +27,8 @@ function AccountDetails() {
       try {
         setLoading(true)
         console.log('Fetching account details for:', effectiveTag)
-        const data = await fetchAccountDetails(effectiveTag)
+        const currentUser = getCurrentUser()
+        const data = await fetchAccountDetails(effectiveTag, currentUser.apiEndpoint)
         console.log('Account data received:', data)
         setAccount(data)
         setError(null)
@@ -37,7 +41,7 @@ function AccountDetails() {
     }
 
     loadAccountDetails()
-  }, [effectiveTag])
+  }, [effectiveTag, getCurrentUser])
 
   if (loading) {
     return (
@@ -71,6 +75,7 @@ function AccountDetails() {
 
   return (
     <div className="container">
+      <BackButton />
       <div className="account-header-details">
         <div className="account-name-section">
           <h1 className="account-name">{account.name}</h1>
@@ -140,16 +145,16 @@ function AccountDetails() {
           <div className="info-grid">
             <div className="info-item">
               <span className="info-label">Current Trophies</span>
-              <span className="info-value">{account.trophies.toLocaleString()}</span>
+              <span className="info-value">{(account.trophies || 0).toLocaleString()}</span>
             </div>
             <div className="info-item">
               <span className="info-label">Best Trophies</span>
-              <span className="info-value">{account.bestTrophies.toLocaleString()}</span>
+              <span className="info-value">{(account.bestTrophies || 0).toLocaleString()}</span>
             </div>
             {account.builderBaseTrophies && (
               <div className="info-item">
                 <span className="info-label">Builder Base Trophies</span>
-                <span className="info-value">{account.builderBaseTrophies.toLocaleString()}</span>
+                <span className="info-value">{(account.builderBaseTrophies || 0).toLocaleString()}</span>
               </div>
             )}
           </div>
@@ -160,15 +165,15 @@ function AccountDetails() {
           <div className="info-grid">
             <div className="info-item">
               <span className="info-label">War Stars</span>
-              <span className="info-value">{account.warStars.toLocaleString()}</span>
+              <span className="info-value">{(account.warStars || 0).toLocaleString()}</span>
             </div>
             <div className="info-item">
               <span className="info-label">Attack Wins (Season)</span>
-              <span className="info-value">{account.attackWins}</span>
+              <span className="info-value">{account.attackWins || 0}</span>
             </div>
             <div className="info-item">
               <span className="info-label">Defense Wins (Season)</span>
-              <span className="info-value">{account.defenseWins}</span>
+              <span className="info-value">{account.defenseWins || 0}</span>
             </div>
           </div>
         </Card>
@@ -178,15 +183,15 @@ function AccountDetails() {
           <div className="info-grid">
             <div className="info-item">
               <span className="info-label">Donated</span>
-              <span className="info-value">{account.donations.toLocaleString()}</span>
+              <span className="info-value">{(account.donations || 0).toLocaleString()}</span>
             </div>
             <div className="info-item">
               <span className="info-label">Received</span>
-              <span className="info-value">{account.received.toLocaleString()}</span>
+              <span className="info-value">{(account.received || 0).toLocaleString()}</span>
             </div>
             <div className="info-item">
               <span className="info-label">Capital Contributions</span>
-              <span className="info-value">{account.clanCapitalContributions.toLocaleString()}</span>
+              <span className="info-value">{(account.clanCapitalContributions || 0).toLocaleString()}</span>
             </div>
           </div>
         </Card>

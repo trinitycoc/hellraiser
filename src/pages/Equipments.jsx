@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { fetchAccounts, fetchAccountDetails } from '../services/api'
+import { useUserContext } from '../contexts/UserContext'
+import BackButton from '../components/BackButton'
 
 // Epic equipment names
 const EPIC_EQUIPMENT = [
@@ -23,6 +25,7 @@ function Equipments() {
   const [accountsData, setAccountsData] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const { getCurrentUser } = useUserContext()
 
   useEffect(() => {
     const loadAllAccountsEquipment = async () => {
@@ -30,8 +33,9 @@ function Equipments() {
         setLoading(true)
         console.log('Fetching all accounts equipment...')
         
+        const currentUser = getCurrentUser()
         // Get list of accounts
-        const accountsResponse = await fetchAccounts()
+        const accountsResponse = await fetchAccounts(currentUser.apiEndpoint)
         const accounts = accountsResponse.accounts || []
         
         // Fetch details for each account to get equipment
@@ -39,7 +43,7 @@ function Equipments() {
           accounts.map(async (account) => {
             try {
               const tag = account.tag.replace('#', '')
-              const details = await fetchAccountDetails(tag)
+              const details = await fetchAccountDetails(tag, currentUser.apiEndpoint)
               
               // Filter for epic equipment (any level)
               const epicEquipment = details.heroEquipment?.filter(eq => 
@@ -88,7 +92,7 @@ function Equipments() {
     }
 
     loadAllAccountsEquipment()
-  }, [])
+  }, [getCurrentUser])
 
   if (loading) {
     return (
@@ -114,11 +118,7 @@ function Equipments() {
 
   return (
     <div className="container equipments-container">
-      <div className="equipments-page-header">
-        <h1>Epic Equipment Tracker</h1>
-        <p className="page-subtitle">Tracking epic equipment across all accounts</p>
-      </div>
-
+      <BackButton />
       {/* Epic Equipment Table */}
       <div className="epic-equipment-table-container">
         <table className="epic-equipment-table">

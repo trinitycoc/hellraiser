@@ -3,16 +3,19 @@
 
 // Accounts Page
 .accounts-table-container {
+  width: 100%;
   overflow-x: auto;
-  margin: $spacing-xl 0;
+  margin: $spacing-md 0 $spacing-xl 0;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  padding: $spacing-md;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
 .accounts-table {
   width: 100%;
   border-collapse: collapse;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 8px;
-  overflow: hidden;
+  background: transparent;
   
   thead {
     background: linear-gradient(135deg, rgba(102, 126, 234, 0.3) 0%, rgba(118, 75, 162, 0.3) 100%);
@@ -26,6 +29,10 @@
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
       border-bottom: 2px solid rgba(255, 255, 255, 0.2);
       letter-spacing: 0.5px;
+      
+      &:nth-child(4) {
+        text-align: center;
+      }
     }
   }
   
@@ -40,6 +47,26 @@
       
       &:last-child {
         border-bottom: none;
+      }
+      
+      // Leader row highlighting
+      &.row-leader {
+        background: linear-gradient(90deg, rgba(251, 191, 36, 0.15) 0%, rgba(251, 191, 36, 0.05) 100%);
+        border-left: 3px solid #fbbf24;
+        
+        &:hover {
+          background: linear-gradient(90deg, rgba(251, 191, 36, 0.2) 0%, rgba(251, 191, 36, 0.1) 100%);
+        }
+      }
+      
+      // Co-Leader row highlighting
+      &.row-coleader {
+        background: linear-gradient(90deg, rgba(59, 130, 246, 0.15) 0%, rgba(59, 130, 246, 0.05) 100%);
+        border-left: 3px solid #3b82f6;
+        
+        &:hover {
+          background: linear-gradient(90deg, rgba(59, 130, 246, 0.2) 0%, rgba(59, 130, 246, 0.1) 100%);
+        }
       }
     }
     

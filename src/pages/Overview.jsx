@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { fetchAccounts } from '../services/api'
+import { useUserContext } from '../contexts/UserContext'
+import BackButton from '../components/BackButton'
 
 function Overview() {
   const [accounts, setAccounts] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const { getCurrentUser } = useUserContext()
 
   useEffect(() => {
     const loadAccounts = async () => {
       try {
         setLoading(true)
-        const data = await fetchAccounts()
+        const currentUser = getCurrentUser()
+        const data = await fetchAccounts(currentUser.apiEndpoint)
         setAccounts(data.accounts || [])
         setError(null)
       } catch (error) {
@@ -23,7 +27,7 @@ function Overview() {
     }
     
     loadAccounts()
-  }, [])
+  }, [getCurrentUser])
 
   if (loading) {
     return (
@@ -48,6 +52,7 @@ function Overview() {
 
   return (
     <div className="container">
+      <BackButton />
       <div className="accounts-table-container">
         <table className="accounts-table">
           <thead>

@@ -5,3 +5,11 @@
 @import './pages/account-details';
 @import './pages/equipments';
 
+// Container utility class
+.container {
+  max-width: 80%;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+  width: 80%;
+}
+

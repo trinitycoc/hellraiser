@@ -21,11 +21,11 @@ export const checkServerHealth = async () => {
 }
 
 /**
- * Fetch all tracked accounts
+ * Fetch all tracked accounts for a specific user
  */
-export const fetchAccounts = async () => {
+export const fetchAccounts = async (userEndpoint = '/accounts') => {
   try {
-    const response = await fetch(`${API_BASE_URL}/accounts`)
+    const response = await fetch(`${API_BASE_URL}${userEndpoint}`)
     
     if (!response.ok) {
       throw new Error(`Failed to fetch accounts: ${response.statusText}`)
@@ -41,10 +41,10 @@ export const fetchAccounts = async () => {
 /**
  * Fetch account details by tag
  */
-export const fetchAccountDetails = async (accountTag) => {
+export const fetchAccountDetails = async (accountTag, userDetailsBase = '/accounts') => {
   try {
     const encodedTag = encodeURIComponent(accountTag.replace('#', ''))
-    const response = await fetch(`${API_BASE_URL}/accounts/${encodedTag}`)
+    const response = await fetch(`${API_BASE_URL}${userDetailsBase}/${encodedTag}`)
     
     if (!response.ok) {
       throw new Error(`Failed to fetch account details: ${response.statusText}`)

@@ -1,92 +1,87 @@
 @import './variables';
 @import './mixins';
 
-// Card component
-.card {
-  @include card;
+// User Selector Component
+.user-selector {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: $spacing-md 0;
+  margin-bottom: $spacing-lg;
+}
+
+.user-selector-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+  display: flex;
+  align-items: center;
+  gap: $spacing-lg;
+  flex-wrap: wrap;
+}
+
+.user-selector-title {
+  font-size: 1rem;
+  color: #ffffff;
+  font-weight: 600;
+  margin: 0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.user-buttons {
+  display: flex;
+  gap: $spacing-sm;
+  flex-wrap: wrap;
+}
+
+.user-button {
+  padding: $spacing-sm $spacing-lg;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   
   &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
   }
   
-  &-primary {
-    background: $primary-gradient;
-    color: white;
-  }
-  
-  &-secondary {
-    background: $secondary-color;
-    color: white;
-  }
-  
-  .card-icon {
-    font-size: 2rem;
-    margin-bottom: $spacing-sm;
-  }
-  
-  .card-title {
-    font-size: 1.25rem;
-    margin-bottom: $spacing-xs;
-  }
-  
-  .card-description {
-    color: $text-secondary;
-    font-size: 0.9rem;
-  }
-}
-
-// Button component
-.btn {
-  @include button;
-  
-  &-primary {
-    background: $primary-color;
-    color: white;
+  &.active {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.4) 0%, rgba(118, 75, 162, 0.4) 100%);
+    border-color: rgba(102, 126, 234, 0.5);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
     
     &:hover {
-      background: darken($primary-color, 10%);
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.5) 0%, rgba(118, 75, 162, 0.5) 100%);
     }
   }
   
-  &-secondary {
-    background: $secondary-color;
-    color: white;
-    
-    &:hover {
-      background: darken($secondary-color, 10%);
-    }
-  }
-  
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+  &:active {
+    transform: translateY(0);
   }
 }
 
-// Section title
-.section-title {
-  text-align: center;
-  margin-bottom: $spacing-xl;
-  
-  h2 {
-    font-size: 2rem;
-    margin-bottom: $spacing-sm;
+// Responsive adjustments
+@media (max-width: 768px) {
+  .user-selector-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $spacing-md;
   }
   
-  p {
-    color: $text-secondary;
+  .user-buttons {
+    width: 100%;
+    justify-content: center;
   }
-}
-
-// Container
-.container {
-  @include container;
-  padding-top: $spacing-xl;
-  padding-bottom: $spacing-xl;
   
-  h1 {
-    margin-bottom: $spacing-lg;
+  .user-button {
+    flex: 1;
+    min-width: 120px;
+    text-align: center;
   }
 }
-
