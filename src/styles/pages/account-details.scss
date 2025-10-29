@@ -40,6 +40,32 @@
   display: flex;
   gap: $spacing-lg;
   flex-wrap: wrap;
+  align-items: center;
+}
+
+.view-equipments-btn {
+  padding: $spacing-md $spacing-lg;
+  background: linear-gradient(135deg, rgba(156, 39, 176, 0.4) 0%, rgba(233, 30, 99, 0.4) 100%);
+  border: 1px solid rgba(233, 30, 99, 0.5);
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
+  
+  &:hover {
+    background: linear-gradient(135deg, rgba(156, 39, 176, 0.5) 0%, rgba(233, 30, 99, 0.5) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(233, 30, 99, 0.4);
+    border-color: rgba(233, 30, 99, 0.7);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
 }
 
 .stat-item {

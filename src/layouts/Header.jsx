@@ -12,6 +12,7 @@ function Header() {
         <ul className="nav-links">
           <li><Link to="/">Home</Link></li>
           <li><Link to="/accounts">Accounts</Link></li>
+          <li><Link to="/equipments">Equipments</Link></li>
           <li><Link to="/overview">Overview</Link></li>
         </ul>
       </nav>
