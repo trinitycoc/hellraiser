@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - master
-    paths:
-      - 'HellRaiser_Frontend/**'
   workflow_dispatch:
 
 permissions:
@@ -24,35 +22,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Find Frontend Directory
-        id: find-frontend
-        run: |
-          if [ -d "HellRaiser_Frontend" ]; then
-            echo "FRONTEND_DIR=HellRaiser_Frontend" >> $GITHUB_OUTPUT
-          elif [ -d "hellraiser-frontend" ]; then
-            echo "FRONTEND_DIR=hellraiser-frontend" >> $GITHUB_OUTPUT
-          elif [ -d "frontend" ]; then
-            echo "FRONTEND_DIR=frontend" >> $GITHUB_OUTPUT
-          else
-            echo "Available directories:"
-            ls -la
-            exit 1
-          fi
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
           cache: 'npm'
-          cache-dependency-path: '${{ steps.find-frontend.outputs.FRONTEND_DIR }}/package-lock.json'
 
       - name: Install dependencies
         run: npm ci
-        working-directory: ${{ steps.find-frontend.outputs.FRONTEND_DIR }}
 
       - name: Build
         run: npm run build
-        working-directory: ${{ steps.find-frontend.outputs.FRONTEND_DIR }}
         env:
           VITE_API_URL: https://hellraiser-backend.onrender.com/api
 
@@ -62,7 +42,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '${{ steps.find-frontend.outputs.FRONTEND_DIR }}/dist'
+          path: './dist'
 
   deploy:
     environment:
