@@ -1,6 +1,7 @@
 // API client for making requests to the HellRaiser backend server
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api'
+// const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api'
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://hellraiser-backend.onrender.com/api'
 
 /**
  * Check if backend server is running
