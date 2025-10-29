@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import { fetchAccounts } from '../services/api'
 import { useUserContext } from '../contexts/UserContext'
 import BackButton from '../components/BackButton'
-import Card from '../components/Card'
 
 function Accounts() {
   const [accounts, setAccounts] = useState([])

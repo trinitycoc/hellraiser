@@ -14,7 +14,6 @@ function UserSelector() {
   return (
     <div className="user-selector">
       <div className="user-selector-container">
-        <h3 className="user-selector-title">Select User</h3>
         <div className="user-buttons">
           {users.map((user) => (
             <button
